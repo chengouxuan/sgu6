@@ -45,30 +45,6 @@ bool DTSSer::GenerateBlocks(DMoveArray &moveArray) {
     return true;
 }
 
-//void DTSSer::MakeSingleMoveZone(Zone &zone, SegmentTable::Table &tab) {
-//    FOR_EACH(i, tab.Size()) {
-//        FOR_EACH(k, 6) {
-//            if(tab.GetItem(i).GetCell(k) == CELL_TYPE_EMPTY && !zone.IsInZone(tab.GetItem(i).GetPoint(k))) {
-//                zone.AddPoint(tab.GetItem(i).GetPoint(k));
-//            }
-//        }
-//    }
-//}
-//
-//void DTSSer::MakeDoubleThreatZone(Zone &zone, SegmentTable::Table &three) {
-//    static Counter cnt;
-//    cnt.Zero();
-//    FOR_EACH(i, three.Size()) {
-//        SegmentTable::Item seg = three.GetItem(i);
-//        FOR_EACH(k, 6) {
-//            Point p = seg.GetPoint(k);
-//            if(::GetCell(p) == CELL_TYPE_EMPTY && ++cnt.Cnt(p) >= 1 && !zone.IsInZone(p)) {
-//                zone.AddPoint(p);
-//            }
-//        }
-//    }
-//}
-
 bool DTSSer::DTSS(int depth, bool isIterativeDTSS) {
 #ifdef _DEBUG
     //printf("depth = %d\n", depth);

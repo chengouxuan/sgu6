@@ -111,99 +111,8 @@ void MoveGenerator::GeneratePromisings(bool isBlack, MGDMoveArray &arr) {
         return;
     } else {
         GenerateByEvals(isBlack, arr);
-        //FOR_EACH(i, prom.Size()) {
-        //    arr.PushBack(prom.ItemRef(i));
-        //}
-        //if(dtsser.RelavanceZone(!isBlack, zone) && zone.Size() > 2) {
-        //    prom.Clear();
-        //    FOR_EACH(i, zone.Size()) {
-        //        if(::GetCell(zone.GetPoint(i)) == CELL_TYPE_EMPTY) {
-        //            prom.PushBack(zone.GetPoint(i), isBlack, 0);
-        //        } else {
-        //       //     zone.Remove(zone.GetPoint(i));
-        //        }
-        //    }
-        //    Couple(isBlack, zone, prom, _PROMISINGS, arr);
-        //    return;
-        //}
-        //Promisings(isBlack, _SINGLE_PROMISINGS, prom);
-        //Couple(isBlack, prom, _PROMISINGS, arr);
     }
-    //static MGDMoveArray preBlock;
-    //GeneratePreBlock(isBlack, preBlock);
-    //if(dMoveArray.Size() > 0) {
-    //    return;
-    //} else
-    //if(dtsser.RelavanceZone(!isBlack, zone) && zone.Size() > 1) {
-    //    moveArray.Clear();
-    //    FOR_EACH(i, zone.Size()) {
-    //        if(::GetCell(zone.GetPoint(i)) == CELL_TYPE_EMPTY) {
-    //            moveArray.Add(zone.GetPoint(i), isBlack);
-    //        }
-    //    }
-    //    //Promisings(isBlack, zone, moveArray);
-    //    CouplePromisings(isBlack, zone, moveArray, dMoveArray);
-    //} else {
-    //    Promisings(isBlack, moveArray);
-    //    CouplePromisings(isBlack, moveArray, dMoveArray);
-    //}
 }
-
-//void MoveGenerator::CoupleSingleBlocks(bool isBlack, MGMoveArray &block, MGDMoveArray &arr) {
-//    arr.Clear();
-//
-//    FOR_EACH(i, block.Size()) {
-//        FOR_EACH_CELL(r, c) {
-//            DMove dm(block.ItemRef(i).GetPoint(), Point(r, c), isBlack);
-//            if(! dm.IsValid()) {
-//                continue;
-//            }
-//            int scr = DMoveEvaluate(dm);
-//            if(dm.GetPoint1() == dm.GetPoint2() || arr.Find(dm, scr)) {
-//                continue;
-//            }
-//            if(arr.Size() < _SINGLE_BLOCKS) {
-//                arr.PushBack(dm, scr);
-//            } else {
-//                MGDMove &min = arr.MinScoreRef();
-//                if(min._score < scr) {
-//                    min = MGDMove(dm, scr);
-//                }
-//            }
-//        }
-//    }
-//    assert(arr.Size() > 0);
-//}
-//
-//void MoveGenerator::CoupleSingleBlocks(bool isBlack, Zone &zone, MGMoveArray &block, MGDMoveArray &arr) {
-//    arr.Clear();
-//
-//    assert(block.Size() > 0);
-//    assert(zone.Size() > 0);
-//
-//    FOR_EACH(i, block.Size()) {
-//        FOR_EACH(k, zone.Size()) {
-//            Point p = zone.GetPoint(k);
-//            DMove dm(block.GetItem(i).GetPoint(), p, isBlack);
-//            if(! dm.IsValid()) {
-//                continue;
-//            }
-//            int scr = DMoveEvaluate(dm);
-//            if(arr.Find(dm, scr)) {
-//                continue;
-//            }
-//            if(dMoveArray.Size() < _SINGLE_BLOCKS) {
-//                arr.PushBack(dm, isBlack);
-//            } else {
-//                MGDMove &min = arr.MinScore();
-//                if(min._score < scr) {
-//                    min = MGDMove(dm, scr);
-//                }
-//            }
-//        }
-//    }
-//    assert(dMoveArray.Size() > 0);
-//}
 
 void MoveGenerator::SingleBlocks(bool isBlack, MGMoveArray &block) {
     block.Clear();
@@ -322,90 +231,13 @@ void MoveGenerator::GenerateSingleBlocks(bool isBlack, MGDMoveArray &arr) {
     FOR_EACH(i, block.Size()) {
         ::MakeMove(block.ItemRef(i));
     }
-    //bool isRele = dtsser.RelavanceZone(!isBlack, zone) && zone.Size() > 0;
     FOR_EACH(i, block.Size()) {
         ::UnmakeLastMove();
     }
-/*    if(isRele) {
-        Couple(isBlack, zone, block, _SINGLE_BLOCKS, arr);
-    } else */{
-        Couple(isBlack, block, _SINGLE_BLOCKS, arr);
-    }
+    
+    Couple(isBlack, block, _SINGLE_BLOCKS, arr);
 }
 
-//#include "utilities.h"
-
-//int MoveGenerator::MoveEvaluate(int row, int col, bool isBlack) {
-//    static int dr[] = {0, -1, -1, 1, 0, 1, 1, -1, 0};
-//    static int dc[] = {-1, 0, -1, -1, 1, 0, 1, 1, -1};
-//    CellType connect = (isBlack ? CELL_TYPE_BLACK : CELL_TYPE_WHITE);
-//    CellType block = (isBlack ? CELL_TYPE_WHITE : CELL_TYPE_BLACK);
-//    int ret = 0;
-//    FOR_EACH(dir, 8) {
-//        int r, c;
-//        int i = 1;
-//        while(i <= _SCORE_TAB_SZ && ::IsInsideBoard(r = row + i * dr[dir], c = col + i * dc[dir])) {
-//            if(::GetCell(r, c) == connect) {
-//                ret += _connectScore[i - 1];
-//                break;
-//            } else if(::GetCell(r, c) == block) {
-//                ret += _blockScore[i - 1];
-//                break;
-//            }
-//            ++i;
-//        }
-//    }
-//    return ret;
-//}
-//
-//int MoveGenerator::DMoveEvaluate(const DMove &dm) {
-//    ::MakeMove(dm.GetPoint1(), dm._isBlack);
-//    int s1 = MoveEvaluate(dm.GetPoint2(), dm._isBlack);
-//    ::UnmakeLastMove();
-//    ::MakeMove(dm.GetPoint2(), dm._isBlack);
-//    int s2 = MoveEvaluate(dm.GetPoint1(), dm._isBlack);
-//    ::UnmakeLastMove();
-//    return s1 + s2;
-//}
-
-//MoveGenerator::MoveGenerator() {
-//    FILE *file = fopen("ConnectScore.txt", "r");
-//    if(file == NULL) {
-//        printf("cannot open ConnectScore.txt\n");
-//        exit(1);
-//    }
-//    char line[1024];
-//    int i = 0;
-//    int scr;
-//    while(i < _SCORE_TAB_SZ && fgets(line, sizeof(line) - 1, file) != NULL) {
-//        if(sscanf(line, "%d", &scr) == 1) {
-//            printf("connect score %d: %d\n", i, scr);
-//            _connectScore[i++] = scr;
-//        }
-//    }
-//    if(i != _SCORE_TAB_SZ) {
-//        printf("bad ConnectScore.txt\n");
-//        exit(1);
-//    }
-//    fclose(file);
-//    file = fopen("BlockScore.txt", "r");
-//    if(file == NULL) {
-//        printf("cannot open BlockScore.txt\n");
-//        exit(1);
-//    }
-//    i = 0;
-//    while(i < _SCORE_TAB_SZ && fgets(line, sizeof(line) - 1, file) != NULL) {
-//        if(sscanf(line, "%d", &scr) == 1) {
-//            printf("block score %d: %d\n", i, scr);
-//            _blockScore[i++] = scr;
-//        }
-//    }
-//    if(i != _SCORE_TAB_SZ) {
-//        printf("bad BlockScore.txt\n");
-//        exit(1);
-//    }
-//    fclose(file);
-//}
 
 void MoveGenerator::GenerateThreats(bool isBlack, MGDMoveArray &arr) {
     arr.Clear();
@@ -433,12 +265,9 @@ void MoveGenerator::GeneratePreBlock(bool isBlack, MGDMoveArray &preBlock) {
     FOR_EACH(i, zone.Size()) {
         if(::GetCell(zone.GetPoint(i)) == CELL_TYPE_EMPTY) {
             arr.PushBack(zone.GetPoint(i), isBlack, 0);
-        } else {
-            //zone.Remove(zone.GetPoint(i));
         }
     }
     Couple(isBlack, zone, arr, _PRE_BLOCKS, preBlock);
-    //Couple(isBlack, arr, _PRE_BLOCKS, preBlock);
 }
 
 void MoveGenerator::GenerateByEvals(bool isBlack, MGDMoveArray &arr) {

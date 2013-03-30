@@ -142,20 +142,11 @@ class MoveGenerator {
 public:
     static const int _NO_MAX = 10;                  // Generate(int no) no 限制
     static const int _SINGLE_BLOCKS = 17;           // GenerateSingleBlocks() 生成数目的限制
-    //static const int _MOVES_MAX = 1000;
-    //static const int _PROMISING_MOVES_SIZE = 53;
-    //static const int _SINGLE_MOVES = 19;
     static const int _THREAT_MOVES = 5;             // GenerateThreats() 生成数目的限制
-    //static const int _SINGLE_THREATS = 17;
-    //static const int _PRE_BLOCKS = 23;
-    //static const int _PROMISINGS = 53;
-    //static const int _SINGLE_PROMISINGS = 11;
     static const int _PRE_BLOCKS = 23;              // GeneratePreBlocks() 生成数目的限制
     static const int _PRE_CONNECTS = 17;            // GeneratePreConnect() 生成数目的限制
     static const int _BY_EVALS = 51;                // GenerateByEvals() 生成数目的限制
     static const int _SINGLE_BY_EVALS = 13;         // GenerateSingleByEvals() 生成数目的限制
-    //static const int _OPENINGS = 7;
-    //static const int _OPENING_EVAL = 83; // “空位估值大于此才枚举”
     static const int _EXTREM_THREATS = 3;           // GenerateExtremThreats() 生成数目的限制
 
     static const int _blockScore[6];
@@ -169,11 +160,6 @@ public:
         MOVE_TYPE_SINGLE_BLOCK,
         MOVE_TYPE_PROMISING,
     } _type;                                        // 所返回着法的类型
-    //static const int _SCORE_TAB_SZ = 5;
-    //int _connectScore[_SCORE_TAB_SZ];
-    //int _blockScore[_SCORE_TAB_SZ];
-
-    //MoveGenerator();
 
     // generated moves are stored in static memory specified by variable ind,
     // be sure that not any two nodes use same value of ind currently.

@@ -175,30 +175,6 @@ private:
     //************************************
     static void SortByHistoryScore(MGDMoveArray &);
 
-    //int MiniWind(bool isBlack) {
-    //    MiniWind(isBlack, _DEPTH_LIMIT, -INFINITY, +INFINITY);
-    //    int eval;
-    //    bool b = GetTransTable(isBlack).LookUp(0, -INFINITY, +INFINITY, eval, _dMove);
-    //    assert(b);
-    //    return eval;
-    //}
-
-    //int Aspiration(bool isBlack, int guess, int wind) {
-    //    int scr = MiniWind(isBlack, _DEPTH_LIMIT, guess - wind, guess + wind);
-    //    if(guess - wind < scr && scr < guess + wind) {
-    //        printf("aspiration success\n");
-    //        GetTransTable(isBlack).LookUp(0, guess - wind, guess + wind, scr, _dMove);
-    //    } else if(scr <= guess - wind) {
-    //        printf("aspiration fail low\n");
-    //        MiniWind(isBlack, _DEPTH_LIMIT, -INFINITY, guess - wind);
-    //        GetTransTable(isBlack).LookUp(0, -INFINITY, guess - wind, scr, _dMove);
-    //    } else {
-    //        printf("aspiration fail high\n");
-    //        MiniWind(isBlack, _DEPTH_LIMIT, guess + wind, +INFINITY);
-    //        GetTransTable(isBlack).LookUp(0, guess + wind, +INFINITY, scr, _dMove);
-    //    }
-    //    return scr;
-    //}
 
 public:
     //************************************
@@ -212,25 +188,8 @@ public:
     //************************************
     void Search(Board board, bool isBlack) {
         NewSearchInit(board);
-        //DMove dm;
         searcher.SetDMove(RandomDMove(isBlack));
-        //if(FindWinningMove(isBlack, _dMove)) {
-        //    printf("win\n");
-        //    searcher.SetDMove(_dMove);
-        //    return;
-        //} else if(dtsser.Search(isBlack, true)) {
-        //    printf("dtss\n");
-        //    searcher.SetDMove(dtsser._dMove);
-        //    return;
-        //} else if(!FindWinningMove(!isBlack, dm) && rzdefender.Defende(isBlack)) {
-        //    searcher.SetDMove(rzdefender._dMove);
-        //    printf("relevance zone defende\n");
-        //    return;
-        //}
         IDMTDF(isBlack);
-        //MTDF(isBlack, NegaMax(isBlack, _DEPTH_LIMIT - 2, -INFINITY, +INFINITY));
-        //MiniWind(isBlack);
-        //Aspiration(isBlack, NegaMax(isBlack, _DEPTH_LIMIT - 2, -INFINITY, +INFINITY), 123456);
     }
 };
 

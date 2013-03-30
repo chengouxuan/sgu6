@@ -151,10 +151,6 @@ private:
     // otherwise returns true and the moveArray contains the threat move and all possible blocking moves.
     bool GenerateBlocks(DMoveArray &moveArray);
 
-    //void MakeSingleMoveZone(Zone &zone, SegmentTable::Table &tab);
-
-    //void MakeDoubleThreatZone(Zone &zone, SegmentTable::Table &three);
-
     void AddEmptyCells(Zone &zone, SegmentTable::Table &tab);
 
     int MakeNMoves(DMoveArray &dMoveArray);

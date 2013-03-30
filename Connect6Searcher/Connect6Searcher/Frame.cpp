@@ -8,42 +8,6 @@
 
 extern bool g_breakSearch;
 
-//int Frame::MTDF(bool isBlacksTurn, int guess) {
-//    int lower = -INFINITY;
-//    int upper = +INFINITY;
-//    int step = 1500000;
-//    int eval;
-//    bool b;
-//    while(lower + step < upper) {
-//        printf("lower = %d, upper = %d, guess = %d\n", lower, upper, guess);
-//        int score = NegaMax(isBlacksTurn, _DEPTH_LIMIT, guess, guess + 1);
-//        b = GetTransTable(isBlacksTurn).LookUp(0, guess, guess + 1, eval, _dMove);
-//        assert(b);
-//        if(score <= guess) {
-//            upper = score;
-//            guess = upper - 1 - step;
-//        } else {
-//            lower = score;
-//            guess = lower + step;
-//        }
-//    }
-//    // binary search like
-//    guess = (lower + upper) / 2;
-//    int oldGuess = guess - 1;
-//    while(lower < upper && oldGuess != guess) {
-//        printf("lower = %d, upper = %d, guess = %d\n", lower, upper, guess);
-//        int score = NegaMax(isBlacksTurn, _DEPTH_LIMIT, guess, guess + 1);
-//        b = GetTransTable(isBlacksTurn).LookUp(0, guess, guess + 1, eval, _dMove);
-//        if(score <= guess) {
-//            upper = score;
-//        } else {
-//            lower = score;
-//        }
-//        oldGuess = guess;
-//        guess = (lower + upper) / 2;
-//    }
-//    return guess;
-//}
 
 void Frame::SortByHistoryScore(MGDMoveArray &dMove) {
     FOR_EACH(i, dMove.Size()) {

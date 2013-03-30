@@ -15,11 +15,7 @@ public:
         return (int)_vec.size();
     }
     void Clear() {
-        // call erase() instead of clear() to avoid freeing the memory allocated by reserve()
         _vec.erase(_vec.begin(), _vec.end());
-        //if(_vec.capacity() != _SIZE) {
-        //    exit(1);
-        //}
     }
     void PushBack(const Item &item) {
         _vec.push_back(item);

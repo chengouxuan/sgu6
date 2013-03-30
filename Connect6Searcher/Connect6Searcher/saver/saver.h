@@ -181,7 +181,6 @@ public:
     void SetRow(int row)
     {
         SET_ROW(_data, row);
-        //WORD r = GET_ROW(_data);
         assert(row == GET_ROW(_data));
     }
 

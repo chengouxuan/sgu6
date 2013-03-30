@@ -24,8 +24,6 @@ public:
 
     int MoveEvaluate(const Move &m) {
         ::MakeMove(m);
-        //int ret = (::GetSegmentTable(m._isBlack, 2).Size() + ::GetSegmentTable(m._isBlack, 3).Size() + ::GetSegmentTable(m._isBlack, 4).Size() + ::GetSegmentTable(m._isBlack, 5).Size())
-        //    + 4000 * (-::GetSegmentTable(!m._isBlack, 2).Size() - ::GetSegmentTable(!m._isBlack, 3).Size() * 3);//evaluator.Evaluate(dm._isBlack);
         int ret = evaluator.Evaluate(m._isBlack);
         ::UnmakeLastMove();
         return ret;
@@ -37,8 +35,6 @@ public:
 
     int DMoveEvaluate(const DMove &dm) {
         MakeDMove(dm);
-        //int ret = (::GetSegmentTable(dm._isBlack, 2).Size() + ::GetSegmentTable(dm._isBlack, 3).Size() + ::GetSegmentTable(dm._isBlack, 4).Size() + ::GetSegmentTable(dm._isBlack, 5).Size())
-        //    + 4000 * (-::GetSegmentTable(!dm._isBlack, 2).Size() - ::GetSegmentTable(!dm._isBlack, 3).Size() * 3);//evaluator.Evaluate(dm._isBlack);
         int ret = evaluator.Evaluate(dm._isBlack);
         ::UnmakeLastDMove();
         return ret;

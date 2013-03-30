@@ -259,8 +259,6 @@ DWORD SearchRequestProcessing(LPVOID)
 
         int d = clock() - cl;
         printf("%d.%03d seconds\n", d / 1000, d % 1000);
-        //printf("%d evaluated nodes\n", evaluatedNodes);
-        //printf("%d DTSS nodes\n", dtssNodes);
         printf("%d evaluations\n", evaluator._evaluations);
         printf("%d evaluator hits\n", evaluator._transTable._hits);
         printf("%d nodes\n", frame._nodes);

@@ -242,13 +242,4 @@ void Opening::BoardRotateClockwise90( Board boardIn, Board boardOut )
     }
 }
 
-//int Opening::IndexOfsameMovesItemInTable( OpeningItem &item )
-//{
-//    for (int i=0; i<table.size(); ++i) {
-//        if (item.IsAllMovesEqual(item)) {
-//            return i;
-//        }
-//    }
-//
-//    return -1;
-//}
+

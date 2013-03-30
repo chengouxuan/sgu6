@@ -129,26 +129,8 @@ int Evaluator::Evaluate(bool isBlacksTurn, int depth)
         score += LineScore(line, sz);
     }
 
-    //static int cellScore[6] = {0, 343, 45630, 55505, 30333, 40444};
-    //FOR_EACH(i, 6) {
-    //    SegmentTable::Table &tab = ::GetSegmentTable(true, n);
-    //    FOR_EACH(k, tab.Size()) {
-    //        FOR_EACH(m, 6) {
-    //            Point p = tab.GetItem(k).GetPoint(m);
-    //            if(::GetCell(p) == CELL_TYPE_BLACK) {
-    //                score += cellScore[i];
-    //            } else if(::GetCell(p) == CELL_TYPE_WHITE) {
-    //                score -= cellScore[i];
-    //            }
-    //        }
-    //    }
-    //}
 #ifdef _DEBUG
-    //::PrintComplexBoard();
-    //printf("score = %d\n", score * (isBlacksTurn ? 1 : -1));
 #endif
-    //assert(score == oldEvaluator.Evaluate(true));
-    //score /= 10;
     _transTable.Enter(score);
     return score * sign + scoreFixing;
 }
@@ -158,10 +140,6 @@ Evaluator evaluator;
 int Evaluator::LineScore(CellType line[_LINE_LEN_MAX], int len) {
     int scr = 0;
 #ifdef _DEBUG
-    //FOR_EACH(i, len) {
-    //    printf(" %s", line[i] == CELL_TYPE_EMPTY ? "." : (line[i] == CELL_TYPE_BLACK ? "X" : "O"));
-    //}
-    //printf("\n");
 #endif
     for(int s=_SHAPE_LEN_MIN; s<=_SHAPE_LEN_MAX; ++s) {
         unsigned int maskB = 0, maskW = 0;

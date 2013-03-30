@@ -1,14 +1,4 @@
-//#include "stdafx.h"
 #include "saver.h"
-//#include "Connect6GUI.h"
-
-//#include <QDebug>
-
-//#ifndef _MSG_SAVE_LOAD
-//#define _MSG_SAVE_LOAD
-//#endif
-
-//#define Message(m) qDebug() << QString(m)
 
 #define Message(m) fprintf(stderr, m)
 
